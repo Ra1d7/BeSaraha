@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+<div id="loginformcontainer" class="container d-flex justify-content-center align-items-center text-light">
+    <form id="loginform" class="text-light needs-validation w-25" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="example@domain.com" title="please enter a valid email" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,}$" autocomplete="on" aria-describedby="emailHelp" required>
+            <div class="invalid-tooltip">
+                Please provide valid a valid email.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" minlength="8" autocomplete="on" required>
+
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+            <label class="form-check-label" for="exampleCheck1">Keep me logged in!</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+        <a class="btn btn-secondary w-100" asp-controller="Login" asp-action="Register">Register</a>
+    </form>
+</div>
