@@ -1,7 +1,16 @@
+using BeSaraha.DataAccess;
+using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opts =>
+{
+    opts.LoginPath = "/Login";
+    opts.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+
+});
+builder.Services.AddSingleton<BeSarahaDB>();
 
 var app = builder.Build();
 
@@ -17,6 +26,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
