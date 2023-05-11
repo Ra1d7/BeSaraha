@@ -43,10 +43,19 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item messages">
                             <a class="nav-link text-light fs-6 borderhover" asp-area="" asp-controller="Messages" asp-action="Index"><i class="fa-solid fa-message fa-lg me-3 ms-0 ps-0 icon"></i>Messages</a>
-                        </li>                       
+                        </li>
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li id="login" class="nav-item">
+                                <a class="nav-link text-light fs-6 fw-bolder text-decoration-underline borderhover" @*asp-area="" asp-controller="Login" asp-action="Login"*@>@Context.User.Identity.Name</a>
+                            </li>
+                        }
+                        else
+                        {    
                         <li id="login" class="nav-item">       
                             <a class="nav-link text-light fs-6 borderhover" asp-area="" asp-controller="Login" asp-action="Login"><i class="fa-solid fa-user fa-lg me-3 ms-0 ps-0 icon"></i>Login</a>
                         </li>
+                        }
                     </ul>
                 </div>
             </div>
