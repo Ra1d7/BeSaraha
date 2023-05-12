@@ -82,7 +82,11 @@ namespace BeSaraha.Controllers
                 var result = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE email = @email AND password = @password", new { login.email, login.password });
                 if (result != null)
                 {
-                    List<Claim> claims = new() { new(ClaimTypes.Name, $"{result.Firstname} {result.Lastname}") };
+                    List<Claim> claims = new() 
+                    {
+                        new(ClaimTypes.Name, $"{result.Firstname} {result.Lastname}"),
+                        new(ClaimTypes.Sid, result.ProfileUrl)
+                    };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     AuthenticationProperties properties = new AuthenticationProperties()
                     {

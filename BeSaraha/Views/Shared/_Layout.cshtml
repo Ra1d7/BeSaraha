@@ -47,7 +47,7 @@
                         @if (Context.User.Identity!.IsAuthenticated)
                         {
                             <li id="login" class="nav-item">
-                                <a class="nav-link text-light fs-6 borderhover" asp-area="" asp-controller="Profile" asp-action="Index"><i class="fa-solid fa-circle-user mx-3 fa-xl" style="color: #ffffff;"></i></a>
+                                <a class="nav-link text-light fs-6 borderhover" href="/Profile/@Context.User.Claims.ToArray()[1].Value"><i class="fa-solid fa-circle-user mx-3 fa-xl" style="color: #ffffff;"></i></a>
                             </li>
                             <li id="logout" class="nav-item">
                                 <a class="nav-link text-light fs-6 fw-bolder ms-3 text-decoration-underline borderhover" asp-area="" asp-controller="Logout" asp-action="Index"><i class="fa-solid fa-right-from-bracket fa-xl" style="color: #ffffff;"></i></a>
