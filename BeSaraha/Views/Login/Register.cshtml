@@ -27,8 +27,12 @@
             </div>
         </div>
         <div class="mb-3">
+            <label for="profileurl" class="form-label">Custom Url</label>
+            <input type="text" asp-for="profileUrl" class="form-control" id="Profileurl" minlength="2" placeholder="Set a custom profile url">
+        </div>
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" asp-for="password" class="form-control" id="password" minlength="2" autocomplete="on" required>
+            <input type="password" asp-for="password" class="form-control" id="password" minlength="8" autocomplete="on" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" asp-for="keeplogin" class="form-check-input" id="exampleCheck1" checked>

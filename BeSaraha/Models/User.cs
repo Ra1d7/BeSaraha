@@ -8,6 +8,10 @@
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Picture { get; set; }
+        public string ProfileUrl { get; set; } = Random.Shared.Next(10000, 100000).ToString();
+        public int followersCount { get; set; } = 0;
+        public int followingCount { get; set; } = 0;
+        public int messagesCount { get; set; } = 0;
 
     }
 }

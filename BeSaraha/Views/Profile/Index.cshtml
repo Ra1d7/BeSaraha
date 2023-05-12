@@ -1,0 +1,39 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Profile";
+}
+<div class="container text-light justify-content-center align-items-center text-center mt-5">
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="card bg-opacity-25 bg-dark rounded-5 text-light container">
+                        <hr/>
+                    <div class="card-img-top m-auto container">
+                        <p>
+
+                        <img id="profileimage" src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" style="height:130px;width:130px;margin-bottom:1rem;"/>
+                        </p>
+                        <p>
+                        <span class="h5 my-5 bg-danger bg-opacity-10 d-inline p-2 rounded-3">@Model.Firstname @Model.Lastname</span>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <hr/>
+                        <div class="row">
+                            <div class="col">
+                                Followers: 165
+                            </div>
+                            <div class="col">
+                                Messages: 354
+                            </div>
+                            <div class="col">
+                                Following: 354
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

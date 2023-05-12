@@ -5,6 +5,11 @@
     --fourth: #ffffff;
     --animation-speed: 8%;
 }
+#profileimage {
+    border-radius: 50%;
+    border: solid var(--primary) 6px;
+
+}
 #loginformcontainer{
     min-height: 80vh;
 }
