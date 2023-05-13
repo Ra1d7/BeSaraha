@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Profile";
 }
-<div class="container text-light w-50 justify-content-center align-items-center text-center mt-5">
+<div class="container text-light justify-content-center align-items-center text-center mt-5">
     <div class="row">
         <div class="col">
             <div class="container">
@@ -19,13 +19,15 @@
                     </div>
                     <div class="card-body">
                         <hr/>
-                        <div class="row">
+                        <div id="profileinfo" class="row">
                             <div class="col">
+                                Followers: @Model.followersCount
                             </div>
                             <div class="col">
-                                Messages: 354
+                                Messages: @Model.messagesCount
                             </div>
                             <div class="col">
+                                Following: @Model.followingCount
                             </div>
                         </div>
                     </div>
@@ -33,5 +35,27 @@
             </div>
         </div>
     </div>
+    <div class="row my-5 container ms-auto me-auto" style="height:15rem;">
+        <div class="bg-opacity-25 bg-dark rounded text-light">
+            <span class="d-block mt-4 mb-0 h5">Message @Model.Firstname</span>
+           <form class="form">
+               <label for="messagecontent"></label>
+               <hr class="my-0" style="opacity:0;"/>
+                <textarea id="message" placeholder="Type a message for @Model.Firstname"></textarea>
+                <hr class="opacity-0 my-0"/>
+               <button id="messagebutton" class="btn btn-primary w-50 my-3 borderhover" style="background-color: var(--primary);outline:none;border:none;">Send</button>
+           </form>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+    const message = document.getElementById("message");
+    message.style.cssText = `height: ${message.scrollHeight*2}px; overflow-y:hidden;width:40rem;border-color: var(--primary);outline-color:var(--primary);`;
+
+    message.addEventListener("input",function() {
+        this.style.height = "auto";
+        this.style.height = `${this.scrollHeight*1.01}px`;
+    });
+
+</script>
 

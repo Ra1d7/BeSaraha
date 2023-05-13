@@ -17,14 +17,7 @@
     flex-grow: 0.3;
     flex-basis: 30%;
 }
-.messages{
-    border-radius: 1rem;
-    align-self: center;
-    text-align: center;
-    margin-left: 23%;
-    width: 40%;
-    letter-spacing: 2px;
-}
+
 #messageList {
     position: relative;
     top: 1.5rem;
@@ -121,6 +114,10 @@
         top: -8%;
     }
 }
+.navbar-nav{
+    flex-direction: row-reverse;
+    align-content: center;
+}
 
 .navbar-toggler:focus {
     box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) white !important;
@@ -156,14 +153,32 @@ html {
     #login{
         margin-left: auto;
     }
+    .messages {
+        border-radius: 1rem;
+        align-self: center;
+        text-align: center;
+        margin-left: 23%;
+        width: 40%;
+        letter-spacing: 2px;
+    }
 }
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
     #login{
         margin-left: 0;
         padding: 0;
     }
+    #messageBlock{
+        width: 200%;
+    }
     #messageBody{
         font-size: 10px;
+        width: inherit;
+    }
+    #sitenavbar{
+        align-items: end;
+    }
+    #profileinfo {
+        font-size: .9rem;
     }
 }
 

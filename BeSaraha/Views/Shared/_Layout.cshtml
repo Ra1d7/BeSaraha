@@ -39,10 +39,10 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars fa-lg" style="color: #ffffff;"></i>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse justify-content-lg-between justify-content-sm-end">
+                    <ul class="navbar-nav flex-grow-1 ms-sm-auto">
                         <li class="nav-item messages">
-                            <a class="nav-link text-light fs-6 borderhover" asp-area="" asp-controller="Messages" asp-action="Index"><i class="fa-solid fa-message fa-lg me-3 ms-0 ps-0 icon"></i>Messages</a>
+                            <a class="nav-link text-light fs-6 borderhover" asp-area="" asp-controller="Messages" asp-action="Index"><i class="fa-solid fa-message fa-lg icon"></i></a>
                         </li>
                         @if (Context.User.Identity!.IsAuthenticated)
                         {
