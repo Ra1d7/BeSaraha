@@ -2,6 +2,7 @@
 using BeSaraha.Models;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 
 namespace BeSaraha.Controllers
 {
@@ -35,6 +36,7 @@ namespace BeSaraha.Controllers
         public async Task<IActionResult> SendMessage(int userid)
         {
             string e = HttpContext.Request.Form["msgtext"];
+            e = HtmlEncoder.Default.Encode(e);
             if (e.Length > 0 && e.Length < 1000)
             {
                 Message msg = new Message() { Date = DateTime.Now, UserId = userid, Text = e };
@@ -55,7 +57,7 @@ namespace BeSaraha.Controllers
                 TempData["error"] = "that is not a valid message!";
             }
             
-            return RedirectToAction("Index", "Profile");
+            return RedirectToAction("Index", "Messages");
         }
     }
 }
