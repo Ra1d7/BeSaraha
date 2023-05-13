@@ -1,11 +1,57 @@
-﻿<div id="messageList" class="container">
+﻿@model List<Message>
+<div id="messageList" class="container">
 <h3 class="text-light mb-5">Messages List</h3>
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
-<partial name="_Message" />
+    @if(Model.Count == 0)
+    {
+        <h3 class="text-light my-5 d-inline-block">Share your link to get some exciting messages <i class="fa-solid fa-heart fa-xl" style="color: #ffffff;"></i></h3>
+        <div class="col my-3">
+        <a class="text-light d-inline  h5 d-inline-block link-offset-2 link-offset-3-hover link-underline-light link-underline-opacity-0 link-underline-opacity-75-hover" target="_blank" id="profilelink" href="https://@Context.Request.Host/Profile/@Context.User.Claims.ToArray()[1].Value">Your Profile Link</a>
+
+        <i id="copybutton" class="fa-solid btn fa-copy fa-lg p-3 bg-dark rounded bg-opacity-10 mx-3" onclick="copyLink()" style="color: #ffffff;"></i>
+        
+        
+        </div>
+    }
+    @foreach(var msg in Model)
+    {     
+    <partial name="_Message" model="msg"/>
+    }
 </div>
+<script type="text/javascript">
+    const copyButton = document.getElementById("copybutton");
+    const profileLink = document.getElementById("profilelink");
+
+    copyButton.onclick = function () {
+        const linkToCopy = profileLink.getAttribute("href");
+
+        // Create a temporary input element
+        const tempInput = document.createElement("input");
+        tempInput.value = linkToCopy;
+        document.body.appendChild(tempInput);
+
+        // Select the text in the temporary input
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the selected text to the clipboard
+        document.execCommand("copy");
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        console.log("Link copied to clipboard");
+
+        // Add the "Copied!" marker to the button
+        const marker = document.createElement("span");
+        marker.innerText = "Copied!";
+        marker.classList.add("copied-marker");
+        copyButton.appendChild(marker);
+
+        // Remove the "Copied!" marker after 2 seconds
+        setTimeout(function () {
+            copyButton.removeChild(marker);
+        }, 2000);
+    }
+
+
+</script>

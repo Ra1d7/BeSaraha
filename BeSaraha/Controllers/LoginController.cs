@@ -85,7 +85,8 @@ namespace BeSaraha.Controllers
                     List<Claim> claims = new() 
                     {
                         new(ClaimTypes.Name, $"{result.Firstname} {result.Lastname}"),
-                        new(ClaimTypes.Sid, result.ProfileUrl)
+                        new(ClaimTypes.Sid, result.ProfileUrl),
+                        new("userid",result.Id.ToString())
                     };
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     AuthenticationProperties properties = new AuthenticationProperties()
