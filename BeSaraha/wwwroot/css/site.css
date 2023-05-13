@@ -157,6 +157,9 @@ html {
     #login{
         margin-left: auto;
     }
+    #message {
+        width: 40rem;
+    }
     .messages {
         border-radius: 1rem;
         align-self: center;
@@ -182,7 +185,10 @@ html {
         align-items: end;
     }
     #profileinfo {
-        font-size: .9rem;
+        display: inline;
+    }
+    #message {
+        width: 20rem;
     }
 }
 

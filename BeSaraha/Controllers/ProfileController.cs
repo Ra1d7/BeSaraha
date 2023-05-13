@@ -37,7 +37,7 @@ namespace BeSaraha.Controllers
         {
             string e = HttpContext.Request.Form["msgtext"];
             e = HtmlEncoder.Default.Encode(e);
-            if (e.Length > 0 && e.Length < 1000)
+            if (e.Length > 10 && e.Length < 1000)
             {
                 Message msg = new Message() { Date = DateTime.Now, UserId = userid, Text = e };
                 using var connection = _db.GetConnection();
@@ -54,7 +54,7 @@ namespace BeSaraha.Controllers
             }
             else
             {
-                TempData["error"] = "that is not a valid message!";
+                TempData["error"] = "your message is either too short or too long!";
             }
             
             return RedirectToAction("Index", "Messages");
