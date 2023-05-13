@@ -42,6 +42,7 @@ namespace BeSaraha.Controllers
                 int rows = await connection.ExecuteAsync("INSERT INTO Messages (Userid,text,date) VALUES (@userid,@text,@date)", msg);
                 if(rows == 1)
                 {
+                    await connection.ExecuteAsync("UPDATE Users SET messagescount = messagescount +1 WHERE id = @userid", new { userid });
                 TempData["success"] = "Message has been sent!";
                 }
                 else
