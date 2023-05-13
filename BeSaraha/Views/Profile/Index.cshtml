@@ -1,6 +1,8 @@
-﻿@model UserAndMessage
+﻿@inject IWebHostEnvironment _env
+@model UserAndMessage
 @{
     ViewData["Title"] = "Profile";
+    string pic = (Model.user.Picture == "" || Model.user.Picture is null) ? _env.WebRootPath + "\\assets\\picc.jpg" : Model.user.Picture;
 }
 <partial name="_Notification" />
 <div class="container text-light justify-content-center align-items-center text-center mt-5">
@@ -11,8 +13,14 @@
                         <hr/>
                     <div class="card-img-top m-auto container">
                         <p>
-
-                        <img id="profileimage" src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" style="height:130px;width:130px;margin-bottom:1rem;"/>
+                            @if(Model.user.Id.ToString() == Context.User.Claims.ToArray()[2].Value)
+                            {
+                            <a class="btn" asp-controller="UserSettings" asp-action="Settings">
+                                <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;z-index:1;"/>
+                         </a>
+                            }else{
+                                <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;" />
+                            }
                         </p>
                         <p>
                         <span class="h5 my-5 bg-danger bg-opacity-10 d-inline p-2 rounded-3">@Model.user.Firstname @Model.user.Lastname</span>
@@ -51,6 +59,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <script type="text/javascript">
     const message = document.getElementById("message");
     message.style.cssText = `height: ${message.scrollHeight*2}px; overflow-y:hidden;border-color: var(--primary);outline-color:var(--primary);`;
