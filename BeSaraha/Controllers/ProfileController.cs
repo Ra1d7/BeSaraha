@@ -2,13 +2,12 @@
 using BeSaraha.Models;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace BeSaraha.Controllers
 {
     public class ProfileController : Controller
     {
-        public record UserAndMessage(User user,Message message);
+        public record UserAndMessage(User user, Message message);
         private readonly BeSarahaDB _db;
 
         public ProfileController(BeSarahaDB db)
@@ -18,10 +17,10 @@ namespace BeSaraha.Controllers
         [HttpGet]
         [Route("/Profile/")]
         [Route("/Profile/{url}")]
-        public async Task<IActionResult> Index([FromRoute]string url="moath17")
+        public async Task<IActionResult> Index([FromRoute] string url = "moath17")
         {
             using var connection = _db.GetConnection();
-            var user = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE profileurl=@url",new {url});
+            var user = await connection.QueryFirstOrDefaultAsync<User>("SELECT * FROM Users WHERE profileurl=@url", new { url });
             if (user == null)
             {
                 TempData["error"] = "No profile was found";
@@ -35,8 +34,26 @@ namespace BeSaraha.Controllers
         [Route("/Profile/{url}")]
         public async Task<IActionResult> SendMessage(int userid)
         {
-            var e = HttpContext.Request.Form["msgtext"];
-            TempData["success"] = "Message has been sent!";
+            string e = HttpContext.Request.Form["msgtext"];
+            if (e.Length > 0 && e.Length < 1000)
+            {
+                Message msg = new Message() { Date = DateTime.Now, UserId = userid, Text = e };
+                using var connection = _db.GetConnection();
+                int rows = await connection.ExecuteAsync("INSERT INTO Messages (Userid,text,date) VALUES (@userid,@text,@date)", msg);
+                if(rows == 1)
+                {
+                TempData["success"] = "Message has been sent!";
+                }
+                else
+                {
+                    TempData["error"] = "An error has occured while sending the message";
+                }
+            }
+            else
+            {
+                TempData["error"] = "that is not a valid message!";
+            }
+            
             return RedirectToAction("Index", "Profile");
         }
     }
