@@ -8,6 +8,7 @@ namespace BeSaraha.Controllers
 {
     public class ProfileController : Controller
     {
+        public record UserAndMessage(User user,Message message);
         private readonly BeSarahaDB _db;
 
         public ProfileController(BeSarahaDB db)
@@ -26,7 +27,17 @@ namespace BeSaraha.Controllers
                 TempData["error"] = "No profile was found";
                 return RedirectToAction("Index", "Messages");
             }
-            return View(user);
+            UserAndMessage model = new UserAndMessage(user, new Message());
+            return View(model);
+        }
+        [HttpPost]
+        [Route("/Profile/")]
+        [Route("/Profile/{url}")]
+        public async Task<IActionResult> SendMessage(int userid)
+        {
+            var e = HttpContext.Request.Form["msgtext"];
+            TempData["success"] = "Message has been sent!";
+            return RedirectToAction("Index", "Profile");
         }
     }
 }
