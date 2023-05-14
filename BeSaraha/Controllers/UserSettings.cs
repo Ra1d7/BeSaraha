@@ -36,15 +36,19 @@ namespace BeSaraha.Controllers
             if (ModelState.IsValid)
             {
                 string currentUserId = HttpContext.User.Claims.ToArray()[2].Value;
-                bool result = await _updateusr.updateUser(user, currentUserId);
-                if (result) TempData["success"] = "Your profile has been updated!";
+                bool[] result = await _updateusr.updateUser(user, currentUserId);
+                if (result[0]) TempData["success"] = "Your profile has been updated!";
+                if (result[1])
+                {
+                TempData["success"] = "You need to relog to see changes";
                 return RedirectToAction("Index", "Logout");
+                }
             }
             else
             {
                 TempData["error"] = "An error has occured while saving changes";
-                return RedirectToAction("Settings", "UserSettings");
             } 
+                return RedirectToAction("Settings", "UserSettings");
         }
     }
 }

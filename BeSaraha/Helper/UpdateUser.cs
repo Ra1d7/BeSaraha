@@ -20,14 +20,13 @@ namespace BeSaraha.Helper
             _env = env;
             _db = db;
         }
-        public async Task<bool> updateUser(UserSettingsDTO user , string userid)
+        public async Task<bool[]> updateUser(UserSettingsDTO user , string userid)
         {
             var dbuser = await GetUser(userid);
             bool picture_update = false;
             bool firstname_update = false;
             bool lastname_update = false;
             bool profile_url_update = false;
-            bool[] checks = { picture_update , firstname_update , lastname_update , profile_url_update};
             if(user.picture != null)
             {
                 picture_update = await updatePicture(user.picture, userid);
@@ -44,11 +43,12 @@ namespace BeSaraha.Helper
             {
                 profile_url_update = await UpdateProfileUrl(user.profileurl, userid);
             }
-            if(checks.Any(x => x == true))
+            bool[] checks = { picture_update , firstname_update , lastname_update , profile_url_update};
+            if(checks.Any(b => b == true))
             {
-                return true;
+                return new bool[]{true,profile_url_update};
             }
-            return false;
+            return new bool[] {false,false};
         }
 
         private async Task<bool> UpdateProfileUrl(string profileurl, string userid)
