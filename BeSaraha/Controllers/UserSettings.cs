@@ -1,4 +1,5 @@
 ﻿using BeSaraha.DataAccess;
+using BeSaraha.Helper;
 using BeSaraha.Models;
 using Dapper;
 using Firebase.Storage;
@@ -9,16 +10,16 @@ namespace BeSaraha.Controllers
 {
     public class UserSettings : Controller
     {
-        private string[] images = { ".jpg", ".png", ".jpeg", ".webp" };
         private readonly BeSarahaDB _db;
+        private readonly UpdateUser _updateusr;
         private readonly IWebHostEnvironment _env;
 
         public record UserSettingsDTO(string firstname,string lastname,string profileurl,IFormFile? picture = null);
 
-        public UserSettings(BeSarahaDB db,IWebHostEnvironment env)
+        public UserSettings(BeSarahaDB db, UpdateUser updateusr)
         {
             _db = db;
-            _env = env;
+            _updateusr = updateusr;
         }
         public async Task<IActionResult> Settings()
         {
@@ -32,28 +33,18 @@ namespace BeSaraha.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveSettings(UserSettingsDTO user)
         {
-             string filename = user.picture.FileName;
-            if (ModelState.IsValid && images.Contains(Path.GetExtension(filename)))
+            if (ModelState.IsValid)
             {
-                var stream = user.picture.OpenReadStream();
-                string filePath = Path.Combine(_env.WebRootPath, "assets", filename);
-                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await user.picture.CopyToAsync(fileStream);
-                    using var connection = _db.GetConnection();
-                    string userid = HttpContext.User.Claims.ToArray()[2].Value;
-                    int rows = await connection.ExecuteAsync("UPDATE USERS SET picture = @filename WHERE id = @userid", new { filename, userid });
-                    if (rows == 1)
-                    {
-                        TempData["success"] = "Your profile has been updated!";
-                    }
-                }
+                string currentUserId = HttpContext.User.Claims.ToArray()[2].Value;
+                bool result = await _updateusr.updateUser(user, currentUserId);
+                if (result) TempData["success"] = "Your profile has been updated!";
+                return RedirectToAction("Index", "Logout");
             }
             else
             {
                 TempData["error"] = "An error has occured while saving changes";
-            }
-            return RedirectToAction("Settings", "UserSettings");
+                return RedirectToAction("Settings", "UserSettings");
+            } 
         }
     }
 }

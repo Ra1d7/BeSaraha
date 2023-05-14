@@ -1,4 +1,5 @@
 using BeSaraha.DataAccess;
+using BeSaraha.Helper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 });
 builder.Services.AddSingleton<BeSarahaDB>();
+builder.Services.AddTransient<UpdateUser>();
 
 var app = builder.Build();
 

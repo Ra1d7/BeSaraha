@@ -2,7 +2,7 @@
 @model UserAndMessage
 @{
     ViewData["Title"] = "Profile";
-    string pic = (Model.user.Picture == "" || Model.user.Picture is null) ? _env.WebRootPath + "\\assets\\picc.jpg" : Model.user.Picture;
+    string pic = (Model.user.Picture == "" || Model.user.Picture is null) ? "\\assets\\picc.jpg" : "\\assets\\profile_pictures\\" + Model.user.Picture;
 }
 <partial name="_Notification" />
 <div class="container text-light justify-content-center align-items-center text-center mt-5">
