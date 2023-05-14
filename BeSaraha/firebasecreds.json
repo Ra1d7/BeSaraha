@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "besarahaimages",
+  "private_key_id": "b635b76a7cd5e5bcad2e6d3cb97ccf884ecfec5b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDcA62UahcvsT+9\njWMEmSF8SVVtj6M7kxAq3zXxqA6MDiwKUN8D0sPK3AmAXuJECvxl3Iv7fBbH3k2N\nBj/8pCp1mvO058DRqBQ2ZBvKzHPVSOnhki7uiqq0X5RL6TZ7Wj0Mk6kl3g/+UbGN\ntIA5B7Ur3gGosVOKXBvyeHb7YEZfde4co+CWImtk9zOdvn/batvpn3mhSto0OTDU\ntjrep4E4m/eLROv7eX0jmM4bKzRvqq77oERgB4rTSkBaYsW94bAeVwOp75chdaZb\n9jpm+J8NNV3OPQiXECmmz3hOhGxjV2XYZB0/g+sRel1DkKb9r3r8Z68qCkKxWKKe\nn13PBvObAgMBAAECggEAA8uocr2cMso7A3kgWS1b6SBji37r3cfWtcNuBpvTzGsk\nkigwM++ur9EF9PBhToBmBEsLh/lT2ns/GT/sJxHQWoEKBt5TDD4UqZXzVZdOjdv/\njoQOfTabmH400u5uB/vxi6yZQW1h5A0V8Nzi5v9dpI9+HDvntgskWRWAIywKnfQk\n4kEKcutI1wZV8n1UzxbvPaEAb7w7vgSyaA0KeX2MUMLuJoD6QnjYDcSPsLf1hFPh\nomf4JzPh6rsin1YwhIsVMFBCFOzh9CWGN9AMc+01BUcV2EjGBNp8iySwDqGFdQD6\n8S0AFZBIfBkkmjfKHlOU7AIaMElx0Za0vrEiiUyLKQKBgQDxqactuxEpNFFTrPEj\nxMoXF907qCGLH+KljUpJebRpH7KHNA0SZ72DmtHRj+wQxvcgCpEvy4WAzbtrUdBf\n5MP7AhvbRuZjQSzEdlaL5XzBi9uqXPfxGO99jJdKG7qD4sm1+aGV+cM4JgAjoamA\nU8ju4DkEORc4jmZJpL03hW38twKBgQDpETt8kTi2L+3LdzzUrfC2vmmDOrgfViyx\nyJxqXjJm9c4bMiU+6kwLmcGJ/5MLrufqznW0/QTu2OT54TdFTYuhl84cY9BZ6NN2\n8knlTp1MTNcdU8jlIP8SK2vCwP2aw3ouXPBYDDO2rsnQiH/eaB+BeGDj6b3OFIR/\n4IFeHfgkPQKBgF+hMQTJt/rEN0KTd0EeSJJm4ScQW2XAkmHMzY7R2HCZGH6kPGAC\nKV6Az3LMLzBca8KEK/vr38KepwHK+FhaIKudpARbxCOW0O5Vnd3yTDIS9DQwYfVI\nVs0p61xqKJ60Cfo29Jhyo6v+baOr/3VGsobEuAtRxDyfLR8LT80+wc11AoGBALZz\nbwYNCUBWNOla5pv3rsDgPukkRo8BfuuOCCScqQhA1KAlmVKvR+is7P2CvTIgMh12\nkl6k0//GeznCPOpb0jsmA4vl92zq/t/WvFJuQGVCogOrW1FDi2pF444KVn2ZGUTC\nLMRAiRsxqXs94BvTlxZbjj3c9WEmXrNcpOlwvJhhAoGAGERInFokQhZULoS/xxSr\n7drhXoYxcxb7n2GbsWNXTZzyK3RodEjEquQVXehonf9rv60kf5Y5z3H6BN1aGtnA\nETa3sAqHNKvkZzOZJYZmUltMaRvv+zPGgD3lRtXd2qCU9nH77QlcHUQ/yT+nS9Fv\niVfq807VsYXBymFMWWOp2bE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-g9kfa@besarahaimages.iam.gserviceaccount.com",
+  "client_id": "117411660663952696945",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-g9kfa%40besarahaimages.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
