@@ -168,6 +168,9 @@ html {
         width: 40%;
         letter-spacing: 2px;
     }
+    #settings {
+        width: 50%;
+    }
 }
 @media (max-width: 600px) {
     #login{

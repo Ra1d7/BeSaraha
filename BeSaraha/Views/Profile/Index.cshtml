@@ -12,15 +12,9 @@
                 <div class="card bg-opacity-25 bg-dark rounded-5 text-light container">
                         <hr/>
                     <div class="card-img-top m-auto container">
+                        <a class="btn" asp-controller="UserSettings" asp-action="Settings" style="margin-left:88%;"><i class="fa-solid fa-gear ms-2 fa-xl" style="color: #ffffff;"></i></a>
                         <p>
-                            @if(Model.user.Id.ToString() == Context.User.Claims.ToArray()[2].Value)
-                            {
-                            <a class="btn" asp-controller="UserSettings" asp-action="Settings">
-                                <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;z-index:1;"/>
-                         </a>
-                            }else{
-                                <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;" />
-                            }
+                            <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;z-index:1;"/>
                         </p>
                         <p>
                         <span class="h5 my-5 bg-danger bg-opacity-10 d-inline p-2 rounded-3">@Model.user.Firstname @Model.user.Lastname</span>
