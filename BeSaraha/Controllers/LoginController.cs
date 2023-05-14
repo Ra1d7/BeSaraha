@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace BeSaraha.Controllers
 {
     public class LoginController : Controller
     {
         private readonly BeSarahaDB _db;
+        private readonly string nameregex = @"^[\p{L}\p{M}\p{N}\p{P}\p{Zs}]+$|[\p{Sc}]";
 
         public LoginController(BeSarahaDB db)
         {
@@ -41,7 +43,7 @@ namespace BeSaraha.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterDTO register)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && Regex.IsMatch(register.firstname,nameregex) && Regex.IsMatch(register.lastname,nameregex))
             {
                 int exists = -1;
                 using var connection = _db.GetConnection();
