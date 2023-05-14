@@ -1,7 +1,28 @@
-﻿
+﻿@model UserSettingsDTO
 @{
     ViewData["Title"] = "Settings";
 }
 
-<h1>Settings</h1>
-
+<partial name="_Notification" />
+<h3 class="my-5 text-light" align="center"><i class="fa-solid fa-gear mx-3 fa-lg" style="color: #ffffff;"></i>Profile Settings</h3>
+<div class="container my-5 h-100 d-flex justify-content-center align-items-center text-light">
+    <div class="container w-50">
+    <form method="post" enctype="multipart/form-data" asp-controller="UserSettings" asp-action="SaveSettings">
+        <div class="input-group">
+            <span class="input-group-text">First and last name</span>
+            <input type="text" asp-for="firstname" placeholder="@Model.firstname" aria-label="First name" class="form-control">
+            <input type="text" asp-for="lastname" placeholder="@Model.lastname" aria-label="Last name" class="form-control">
+        </div>
+        <label class="form-label mt-2" for="basic-url">Profile URL</label>
+        <div class="input-group mb-2">
+            <span class="input-group-text" id="basic-addon3">@Context.Request.Host/Profile/</span>
+                <input type="text" class="form-control" asp-for="profileurl" placeholder="@Model.profileurl" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <label class="d-block mb-2" asp-for="picture"></label>
+        <div class="input-group">
+                <input class="form-control" asp-for="picture" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        </div>
+            <button type="submit" class="btn btn-primary w-100 my-4">Save</button>
+    </form>
+    </div>
+</div>
