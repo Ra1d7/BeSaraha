@@ -11,6 +11,7 @@ Some of the notable features of BeSaraha include:
 - Usage of Dapper to communicate with the SQL database, which stores all the information.
 - Implementation of Bootstrap 5 with jQuery, Toastr javascript library to create a responsive UI.
 - full protection against Cross-Site-Scripting (XSS) while sending and recieving messages.
+- the repository contains the sql script to initiate the database after which the developer needs to set the correct connection string to in the appsettings.json file.
 
 Overall, BeSaraha is a well-designed, secure, and user-friendly website that can be used as a base for building a more social media platform for sending and recieving anonymous messages. The use of modern technologies such as .NET Core, and Bootstrap 5 ensures that the website is fast, reliable, and responsive.
 <hr/>
