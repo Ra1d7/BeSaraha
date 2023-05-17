@@ -76,11 +76,18 @@ namespace BeSaraha.Helper
         }
 
         private async Task<bool> updatePicture(IFormFile picture , string userid)
-        { 
+        {
+            try
+            {
             using var connection1 = _db.GetConnection();
             string oldProfileUrl = await connection1.QueryFirstAsync<string>("SELECT picture FROM USERS WHERE id = @userid", new { userid });
             string oldPath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", oldProfileUrl);
             File.Delete(oldPath);
+            }
+            catch
+            {
+                //no previous profile_picture (which is normal)
+            }
             string filename = picture.FileName;
             var stream = picture.OpenReadStream();
             string filePath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", filename);

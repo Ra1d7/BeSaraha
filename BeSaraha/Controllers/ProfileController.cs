@@ -2,7 +2,7 @@
 using BeSaraha.Models;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Encodings.Web;
+using System.Web;
 
 namespace BeSaraha.Controllers
 {
@@ -35,11 +35,11 @@ namespace BeSaraha.Controllers
         [Route("/Profile/{url}")]
         public async Task<IActionResult> SendMessage(int userid)
         {
-            string e = HttpContext.Request.Form["msgtext"];
-            e = HtmlEncoder.Default.Encode(e);
-            if (e.Length > 10 && e.Length < 1000)
+            string sentMessage = HttpContext.Request.Form["msgtext"];
+            sentMessage = HttpUtility.HtmlDecode(sentMessage);
+            if (sentMessage.Length > 10 && sentMessage.Length < 1000)
             {
-                Message msg = new Message() { Date = DateTime.Now, UserId = userid, Text = e };
+                Message msg = new Message() { Date = DateTime.Now, UserId = userid, Text = sentMessage };
                 using var connection = _db.GetConnection();
                 int rows = await connection.ExecuteAsync("INSERT INTO Messages (Userid,text,date) VALUES (@userid,@text,@date)", msg);
                 if(rows == 1)

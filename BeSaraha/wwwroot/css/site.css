@@ -135,7 +135,6 @@
 
 #messageBody {
     margin: 0.3rem;
-    font-size: 13.5px;
     color: azure;
     opacity: 0.9;
     border-radius: 0.3rem;
@@ -145,20 +144,13 @@
     border-radius: 0.3rem;
     border: 0.2rem solid white;
 }
-
-html {
-    font-size: 14px;
-}
-
+/*---------------- Big Devices ----------------*/
 @media (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 18px;
     }
     #login{
         margin-left: auto;
-    }
-    #message {
-        width: 40rem;
     }
     .messages {
         border-radius: 1rem;
@@ -172,7 +164,12 @@ html {
         width: 50%;
     }
 }
+/*---------------- Small Devices ----------------*/
 @media (max-width: 600px) {
+    html{
+        font-size: 16px;
+        height: 100vh;
+    }
     #login{
         margin-left: 0;
         padding: 0;
@@ -181,7 +178,6 @@ html {
         width: 200%;
     }
     #messageBody{
-        font-size: 10px;
         width: inherit;
     }
     #sitenavbar{
@@ -190,9 +186,9 @@ html {
     #profileinfo {
         display: inline;
     }
-    #message {
-        width: 20rem;
-    }
+}
+#message {
+    width: 100%;
 }
 
 html {
@@ -204,8 +200,7 @@ body {
     background: rgb(209,150,127);
     background: linear-gradient(332deg, rgba(209,150,127,1) 0%, rgba(255,170,0,1) 300%);
     margin-bottom: 60px;
-    font-family: 'Comme', sans-serif;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Tajawal' , 'Roboto Mono', monospace;
     overflow-x: hidden;
 }
 /* width */
