@@ -44,19 +44,19 @@ Overall, BeSaraha is a well-designed, secure, and user-friendly website that can
 <hr/>
 <h2 align="center"> Screenshots 🌠 </h2>
 <p align="center">
-  <img src="https://github.com/Ra1d7/BeSaraha/assets/25421570/2456a15c-d408-460f-9d40-89a88becbf88" width="80%">
+  <img src="https://i.ibb.co/fpvHF4Z/messages.png" width="80%">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Ra1d7/BeSaraha/assets/25421570/85b2f7c1-f783-40b0-88e6-3b07f83c76eb" width="80%">
+  <img src="https://i.ibb.co/8msnCB9/profile.png" width="80%">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Ra1d7/BeSaraha/assets/25421570/97b94545-5728-40a8-8a89-09bcf8829d57" width="80%">
+  <img src="https://i.ibb.co/cg9SYp3/register.png" width="80%">
 </p>
 
 <p align="center">
-  <img src="https://github.com/Ra1d7/BeSaraha/assets/25421570/f699f418-93ff-4ea2-a7c8-7d0e0791b88e" width="80%">
+  <img src="https://i.ibb.co/Wfk08VL/login.png" width="80%">
 </p>
 
 </hr>
