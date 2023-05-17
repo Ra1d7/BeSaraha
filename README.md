@@ -6,7 +6,7 @@ the front-end is fully customized and responsive using bootstrap , jquery and to
 Some of the notable features of BeSaraha include:
 
 - User authentication using encrypted cookies to manage the user's state.
-- User login / register with fully hashed passwords using SHA256 algorithim
+- User login / register and logout features with fully hashed passwords using SHA256 algorithim
 - fully customized profiles including the profile url and user profile picture.
 - Usage of Dapper to communicate with the SQL database, which stores all the information.
 - Implementation of Bootstrap 5 with jQuery, Toastr javascript library to create a responsive UI.
