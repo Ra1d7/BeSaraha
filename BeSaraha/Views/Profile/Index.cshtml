@@ -3,6 +3,15 @@
 @{
     ViewData["Title"] = "Profile";
     string pic = (Model.user.Picture == "" || Model.user.Picture is null) ? "\\assets\\picc.jpg" : "\\assets\\profile_pictures\\" + Model.user.Picture;
+    string userid = "";
+    try
+    {
+      userid = Context.User.Claims.ToList()[2].Value;
+    }
+    catch
+    {
+        //
+    }
 }
 <partial name="_Notification" />
 <div class="container text-light justify-content-center align-items-center text-center mt-5">
@@ -12,7 +21,11 @@
                 <div class="card bg-opacity-25 bg-dark rounded-5 text-light container">
                         <hr/>
                     <div class="card-img-top m-auto container">
+                        @if(Model.user.Id.ToString() == userid)
+                        {
+                            
                         <a class="btn" asp-controller="UserSettings" asp-action="Settings" style="margin-left:88%;"><i class="fa-solid fa-gear ms-2 fa-xl" style="color: #ffffff;"></i></a>
+                        }
                         <p>
                             <img id="profileimage" src="@pic" style="height:130px;width:130px;margin-bottom:1rem;z-index:1;"/>
                         </p>

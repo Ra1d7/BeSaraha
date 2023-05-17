@@ -2,7 +2,6 @@
 using BeSaraha.Models;
 using Dapper;
 using Microsoft.IdentityModel.Tokens;
-using NuGet.Protocol.Plugins;
 using System.Text.RegularExpressions;
 using static BeSaraha.Controllers.UserSettings;
 
@@ -20,35 +19,35 @@ namespace BeSaraha.Helper
             _env = env;
             _db = db;
         }
-        public async Task<bool[]> updateUser(UserSettingsDTO user , string userid)
+        public async Task<bool[]> updateUser(UserSettingsDTO user, string userid)
         {
             var dbuser = await GetUser(userid);
             bool picture_update = false;
             bool firstname_update = false;
             bool lastname_update = false;
             bool profile_url_update = false;
-            if(user.picture != null)
+            if (user.picture != null)
             {
                 picture_update = await updatePicture(user.picture, userid);
             }
-            if(!user.firstname.IsNullOrEmpty() && user.firstname != dbuser.Firstname && Regex.IsMatch(user.firstname,nameregex))
+            if (!user.firstname.IsNullOrEmpty() && user.firstname != dbuser.Firstname && Regex.IsMatch(user.firstname, nameregex))
             {
-                firstname_update = await UpdateFirstName(user.firstname , userid);
+                firstname_update = await UpdateFirstName(user.firstname, userid);
             }
             if (!user.lastname.IsNullOrEmpty() && user.lastname != dbuser.Lastname && Regex.IsMatch(user.lastname, nameregex))
             {
                 lastname_update = await UpdateLastName(user.lastname, userid);
             }
-            if(user.profileurl != null && user.profileurl != dbuser.ProfileUrl && Regex.IsMatch(user.profileurl, nameregex))
+            if (user.profileurl != null && user.profileurl != dbuser.ProfileUrl && Regex.IsMatch(user.profileurl, nameregex))
             {
                 profile_url_update = await UpdateProfileUrl(user.profileurl, userid);
             }
-            bool[] checks = { picture_update , firstname_update , lastname_update , profile_url_update};
-            if(checks.Any(b => b == true))
+            bool[] checks = { picture_update, firstname_update, lastname_update, profile_url_update };
+            if (checks.Any(b => b == true))
             {
-                return new bool[]{true,profile_url_update};
+                return new bool[] { true, profile_url_update };
             }
-            return new bool[] {false,false};
+            return new bool[] { false, false };
         }
 
         private async Task<bool> UpdateProfileUrl(string profileurl, string userid)
@@ -70,36 +69,39 @@ namespace BeSaraha.Helper
         private async Task<bool> UpdateFirstName(string firstname, string userid)
         {
             using var connection = _db.GetConnection();
-            int rows = await connection.ExecuteAsync("UPDATE USERS SET firstname = @firstname WHERE id = @userid",new { firstname , userid });
+            int rows = await connection.ExecuteAsync("UPDATE USERS SET firstname = @firstname WHERE id = @userid", new { firstname, userid });
             if (rows == 1) return true;
             return false;
         }
 
-        private async Task<bool> updatePicture(IFormFile picture , string userid)
+        private async Task<bool> updatePicture(IFormFile picture, string userid)
         {
             try
             {
-            using var connection1 = _db.GetConnection();
-            string oldProfileUrl = await connection1.QueryFirstAsync<string>("SELECT picture FROM USERS WHERE id = @userid", new { userid });
-            string oldPath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", oldProfileUrl);
-            File.Delete(oldPath);
+                using var connection1 = _db.GetConnection();
+                string oldProfileUrl = await connection1.QueryFirstAsync<string>("SELECT picture FROM USERS WHERE id = @userid", new { userid });
+                string oldPath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", oldProfileUrl);
+                File.Delete(oldPath);
             }
             catch
             {
                 //no previous profile_picture (which is normal)
             }
-            string filename = picture.FileName;
-            var stream = picture.OpenReadStream();
-            string filePath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", filename);
-            using (Stream fileStream = new FileStream(filePath, FileMode.Create))
+            if (images.Contains(Path.GetExtension(picture.FileName))) //whitelist only image file extensions
             {
-                await picture.CopyToAsync(fileStream);
-                using var connection = _db.GetConnection();
-                int rows = await connection.ExecuteAsync("UPDATE USERS SET picture = @filename WHERE id = @userid", new { filename, userid });
-
-                if (rows == 1)
+                string filename = picture.FileName;
+                var stream = picture.OpenReadStream();
+                string filePath = Path.Combine(_env.WebRootPath, "assets", "profile_pictures", filename);
+                using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    return true;
+                    await picture.CopyToAsync(fileStream);
+                    using var connection = _db.GetConnection();
+                    int rows = await connection.ExecuteAsync("UPDATE USERS SET picture = @filename WHERE id = @userid", new { filename, userid });
+
+                    if (rows == 1)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

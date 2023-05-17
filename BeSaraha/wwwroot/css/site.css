@@ -1,9 +1,53 @@
+
 :root {
     --primary: #FF9A76;
     --secondary: #F7C5A8;
     --third: #f9d7c2;
     --fourth: #ffffff;
     --animation-speed: 8%;
+}
+/*---------------- Big Devices ----------------*/
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+    #login{
+        margin-left: auto;
+    }
+    .messages {
+        border-radius: 1rem;
+        align-self: center;
+        text-align: center;
+        margin-left: 23%;
+        width: 40%;
+        letter-spacing: 2px;
+    }
+    #settings {
+        width: 50%;
+    }
+}
+/*---------------- Small Devices ----------------*/
+@media (max-width: 600px) {
+    html{
+        font-size: 16px;
+        height: 100vh;
+    }
+    #login{
+        margin-left: 0;
+        padding: 0;
+    }
+    #messageBlock{
+        width: 200%;
+    }
+    #messageBody{
+        width: inherit;
+    }
+    #sitenavbar{
+        align-items: end;
+    }
+    #profileinfo {
+        display: inline;
+    }
 }
 #profileimage {
     border-radius: 50%;
@@ -143,49 +187,6 @@
 #messageBodyContainer {
     border-radius: 0.3rem;
     border: 0.2rem solid white;
-}
-/*---------------- Big Devices ----------------*/
-@media (min-width: 768px) {
-    html {
-        font-size: 18px;
-    }
-    #login{
-        margin-left: auto;
-    }
-    .messages {
-        border-radius: 1rem;
-        align-self: center;
-        text-align: center;
-        margin-left: 23%;
-        width: 40%;
-        letter-spacing: 2px;
-    }
-    #settings {
-        width: 50%;
-    }
-}
-/*---------------- Small Devices ----------------*/
-@media (max-width: 600px) {
-    html{
-        font-size: 16px;
-        height: 100vh;
-    }
-    #login{
-        margin-left: 0;
-        padding: 0;
-    }
-    #messageBlock{
-        width: 200%;
-    }
-    #messageBody{
-        width: inherit;
-    }
-    #sitenavbar{
-        align-items: end;
-    }
-    #profileinfo {
-        display: inline;
-    }
 }
 #message {
     width: 100%;

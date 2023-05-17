@@ -3,4 +3,4 @@
     ViewData["Title"] = "Messages";
 }
 <partial name="_Notification" />
-<partial name="_MessagesList" model="Model" />
+<partial name="_MessagesList" model="Model.OrderByDescending(x => x.Date).ToList()" />

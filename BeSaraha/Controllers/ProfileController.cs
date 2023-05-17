@@ -56,7 +56,6 @@ namespace BeSaraha.Controllers
             {
                 TempData["error"] = "your message is either too short or too long!";
             }
-            
             return RedirectToAction("Index", "Messages");
         }
     }
