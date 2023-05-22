@@ -80,7 +80,7 @@ This is where users first register on the website, if they'd like to recieve mes
 they are asked for their fullname , email , password and if they'd like to set a custom profile url. (if not given the profile url is generated randomly and is guaranteed to be unique)
 </p>
 
-<h3 align="center"> Loign Page </h3>
+<h3 align="center"> Login Page </h3>
 <p align="center">
 This page is pretty self explanatory as it allows registered users to login into the website.
  it assigns them a cookie at login which lasts about 20 minutes.
